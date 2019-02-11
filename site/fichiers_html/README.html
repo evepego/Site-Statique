@@ -1,0 +1,169 @@
+<h1>TP4 - Spéléologie réseau : descente dans les couches</h1>
+
+<h2>I. Mise en place du lab :</h2>
+
+<h3>1. Création des réseaux :</h3>
+
+<h3>2. Création des VMs :</h3>
+
+<h3>3. Mise en place du routage :</h3>
+
+<h2>II. Spéléologie réseau :</h2>
+
+<h3>1. ARP :</h3>
+
+<h4>A. Manip 1</h4>
+
+<h5>1 :</h5>
+
+<p>Pour vider la table ARP, j'utilise la commande suivante :
+<code>bash
+sudo ip neigh flush all
+</code></p>
+
+<h5>2 :</h5>
+
+<ul>
+<li>Pour afficher la table ARP, j'utilise la commande suivante :
+<code>bash
+ip neigh show
+</code></li>
+<li>On obtiendra :
+<code>bash
+10.1.0.1 dev enp0s3 lladdr 0a:00:27:00:00:11 DELAY
+</code></li>
+<li><p>C'est la connexion entre putty et mon oridinateur.</p>
+
+<h5>3 :</h5></li>
+<li><p>J'effectue la commande pour afficher la table ARP vue ci-dessus.
+<code>bash
+10.2.0.1 dev enp0s3 lladdr 0a:00:27:00:00:12 DELAY
+</code></p></li>
+<li><p>C'est la connexion entre putty et mon oridinateur.</p>
+
+<h5>4 :</h5></li>
+<li><p>J'effectue la commande : 
+<code>bash
+ping server1.tp4
+</code></p></li>
+<li>J'effectue la commande pour afficher la table ARP vue ci-dessus.
+<code>bash
+10.1.0.254 dev enp0s3 lladdr 08:00:27:16:c7:61 REACHABLE
+10.1.0.1 dev enp0s3 lladdr 0a:00:27:00:00:11 REACHABLE
+</code></li>
+<li>1ère ligne : C'est la connexion entre mon client et mon routeur.</li>
+<li><p>2ème ligne : C'est la connexion entre putty et mon oridinateur.</p>
+
+<h5>5 :</h5></li>
+<li><p>J'effectue la commande pour afficher la table ARP vue ci-dessus.
+<code>bash
+10.2.0.1 dev enp0s3 lladdr 0a:00:27:00:00:12 DELAY
+10.2.0.254 dev enp0s3 lladdr 08:00:27:1a:55:e9 STALE
+</code></p></li>
+<li>1ère ligne : C'est la connexion entre putty et mon oridinateur.</li>
+<li>2ème ligne : C'est la connexion entre mon client et mon routeur.</li>
+</ul>
+
+<h4>B. Manip 2</h4>
+
+<h5>1.</h5>
+
+<p>Pour vider la table ARP, j'utilise la commande suivante :
+<code>bash
+sudo ip neigh flush all
+</code></p>
+
+<h5>2.</h5>
+
+<ul>
+<li>Pour afficher la table ARP, j'utilise la commande suivante :
+<code>bash
+ip neigh show
+</code></li>
+<li>AFFICHER ET EXPLIQUER LES LIGNES</li>
+</ul>
+
+<h5>3.</h5>
+
+<ul>
+<li>J'effectue la commande : 
+<code>bash
+ping server1.tp4
+</code></li>
+<li>AFFICHER ET EXPLIQUER DES LIGNES</li>
+</ul>
+
+<h5>4.</h5>
+
+<ul>
+<li>J'effectue la commande vue ci-dessus pour afficher la table ARP.</li>
+<li>AFFICHER ET EXPLIQUER DES LIGNES</li>
+</ul>
+
+<h4>C. Manip 3</h4>
+
+<h5>1.</h5>
+
+<ul>
+<li><p>Pour vider la table ARP sur mon PC, j'utilise la commande suivante :
+<code>bash
+arp -d
+</code></p>
+
+<h5>2.</h5></li>
+<li><p>Sur mon PC, j'effectue la commande suivante :
+<code>bash
+arp -a
+</code> </p></li>
+<li>EXPLIQUER CHANGEMENTS</li>
+</ul>
+
+<h4>D. Manip 4</h4>
+
+<h5>1.</h5>
+
+<ul>
+<li><p>Pour vider la table ARP, j'utilise la commande suivante :
+<code>bash
+sudo ip neigh flush all
+</code></p>
+
+<h5>2.</h5></li>
+<li><p>J'affiche la table ARP de client1.</p></li>
+<li>Pour activer la carte NAT :
+<ul>
+<li>J'éteind la machine client1</li>
+<li>Dans <strong>configurations</strong> puis dans <strong>réseau</strong>, je crée une nouvelle carte en NAT.</li>
+<li>Je rallume la VM client1.</li>
+</ul></li>
+</ul>
+
+<h3>2. Wireshark :</h3>
+
+<h4>A. Interception d'ARP</h4>
+
+<h4>B. Interception d'une communication</h4>
+
+<h4>C. Interception d'un trafic HTTP</h4>
+
+<h2>Annexe 1 : Installation d'un client graphique</h2>
+
+<p>faire les cadre:
+ ```bash</p>
+
+<p>```</p>
+
+<p>table arp avant internet</p>
+
+<p><code>
+[root@client ~]# sudo ip neigh show
+10.1.0.1 dev enp0s3 lladdr 0a:00:27:00:00:11 REACHABLE
+</code></p>
+
+<p>table arp après curl sur google.com</p>
+
+<p><code>
+[root@client ~]# ip neigh show
+10.1.0.1 dev enp0s3 lladdr 0a:00:27:00:00:11 REACHABLE
+10.0.3.2 dev enp0s8 lladdr 52:54:00:12:35:02 REACHABLE
+</code></p>

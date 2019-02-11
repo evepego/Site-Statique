@@ -1,0 +1,102 @@
+<h1>TP 2 - Réseau</h1>
+
+<p><strong>I.Exploration locale en solo :</strong></p>
+
+<p><strong>1.Affichage d&#39;informations sur la pile TCP/IP locale :</strong></p>
+
+<p>Afficher les infos des cartes réseaux de notre PC (Windows 10):</p>
+
+<p><strong>→</strong> ouvrir powershell / invite de commande</p>
+
+<p><strong>→</strong> IPCONFIG /ALL</p>
+
+<p>INTERFACE WIFI :</p>
+
+<ul>
+<li><p><strong>nom<em>*</strong> :</em>* Intel(R) Dual Band Wireless_AC 8265</p></li>
+<li><p><strong>adresse physique<em>*</strong> :</em>* 60-F6-77-EF-EE-BC</p></li>
+<li><strong>adresse IPv4 :</strong> 10.33.2.77</li>
+<li><strong>adresse réseau :</strong> 10.33.2.0</li>
+<li><strong>adresse de broadcast :</strong> 10.33.2.255</li>
+<li><strong>adresse IP passerelle :</strong> 10.33.3.253</li>
+</ul>
+
+<p>INTERFACE ETHERNET :</p>
+
+<ul>
+<li><strong>nom :</strong> Realtek PCIe GBE Family Controller</li>
+<li><strong>adresse physique :</strong> 18-31-BF-12-94-2D</li>
+<li><strong>adresse IPv4 :</strong> aucune</li>
+<li><strong>adresse réseau :</strong> aucune</li>
+<li><strong>adresse de broadcast :</strong> aucune</li>
+<li><strong>adresse IP passerelle :</strong> aucune</li>
+</ul>
+
+<p>Trouver l&#39;IP, la MAC (adresse réseau) et la gateway pour l&#39;interface WIFI de notre PC sur interface graphique :</p>
+
+<p><strong>→</strong> ouvrir le <strong>panneau de configuration</strong> à partir du <strong>menu démarrer</strong></p>
+
+<p><strong>→</strong> cliquer sur <strong>réseau et internet</strong></p>
+
+<p><strong>→</strong> dans <strong>centre réseau et partage,</strong> cliquer sur <strong>afficher l&#39;état et la gestion du réseau</strong></p>
+
+<p><strong>→</strong> dans <strong>wifi</strong> , dans <strong>connexions</strong> cliquer sur <strong>WI-FI</strong></p>
+
+<p><strong>→</strong>  cliquer sur <strong>détails…</strong></p>
+
+<p><strong>→</strong> Il ne reste plus qu&#39;à lire les infos.</p>
+
+<p>Une passerelle est un système logiciel ou matériel permettant de passer d&#39;un environnement à un autre.</p>
+
+<p>Cela veut dire que la passerelle YNOV sert à relier notre PC au wifi d&#39;YNOV.</p>
+
+<p><strong>2.Modifications des informations :</strong></p>
+
+<p><strong>A.</strong> Modification d&#39;adresse IP - pt. 1</p>
+
+<p>Je calcule la première et la dernière IP disponible :</p>
+
+<ul>
+<li><strong>première IP</strong> : 10.33.0.1 ou 10.33.0.0</li>
+<li><strong>dernière IP</strong> : 10.33.3.254 ou 10.33.3.255</li>
+</ul>
+
+<p>Je change mon adresse IPv4 actuelle pour : 10.33.1.150</p>
+
+<p><strong>B.</strong> [nmap]</p>
+
+<p>Pour connaître les IP disponibles sur un réseau, il suffit de taper la commande <strong>nmap -sn -PE 10.33.3.253/24</strong> (10.33.3.253/24 étant l'IP du serveur Ynov).</p>
+
+<p>La commande affiche toute les adresses IP utilisés avec le nom du fabriquant.
+<img src="./capture.PNG" alt="image" />
+Elle précise le nombre d'IP total ainsi que le nombre d'IP utilisées.
+<img src="./capture1.PNG" alt="image" />
+Les IP disponibles sontoutes celles qui ne sont pas indiquées.</p>
+
+<p><strong>II.Exploration locale en duo</strong></p>
+
+<p>Nous allons maintenant connecter deux ordinateurs avec un câble RJ45. Pour permettre la liaison entre les deux postes nous allons désactiver les pares-feux.</p>
+
+<p>Il faut ensuite modifier les adresses IP en allant dans :
+- panneau de configuration,
+- réseau et internet
+- centre réseau et partage. 
+- modifier les paramètres de la carte.</p>
+
+<p>Il nous reste juste à sélectionner la carte réseau appropriée.</p>
+
+<p>On ouvre un invite de commande, on tape <strong>ipconfig /all</strong> pour vérifier que tous les changements ont pris effet. </p>
+
+<p>Pour tester la connectivité entre les deux machines on va effectuer un <strong>ping ip</strong> ou <strong>ping nom de la machine</strong> avec la machine que l’on veut joindre.</p>
+
+<p>Pour l’utilisation d’une des deux machines comme gateway il faut : 
+-    Désactiver l’interface WiFi sur l’un des deux postes
+-    S’assurer de la bonne connectivité entre les deux PCs à travers le câble RJ45</p>
+
+<p>On teste la connectivité à internet avec un <strong>ping</strong> dans l’invite de commande.</p>
+
+<p>Pour ce qui est du <strong>ping 8.8.8.8</strong> on ne peut pas l’effectuer car le réseau d’Ynov nous le permet pas.</p>
+
+<p>On a téléchargé <strong>Wireshark</strong>. On a classé les trames par protocoles afin d’observer rien que les <strong>ping</strong>.</p>
+
+<p><img src="./capture2.PNG" alt="image" /></p>
